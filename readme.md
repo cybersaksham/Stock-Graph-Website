@@ -10,6 +10,12 @@ pip install flask
 ```cmd
 pip install gunicorn
 ```
+```cmd
+pip install bokeh
+```
+```cmd
+pip install pandas_datareader
+```
 
 # Status
-<p>Project Started.</p>
+<p>Google Stock Plotted.</p>
