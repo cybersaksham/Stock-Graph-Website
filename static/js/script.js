@@ -23,6 +23,8 @@ function loader($inp){
 }
 
 $(document).ready(function(){
+    $today = new Date();
+    $('#endDate').val($today.toISOString().substr(0, 10));
     $('#searchBtn').click(function(e){
         e.preventDefault();
         giveOutput("", "");
