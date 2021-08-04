@@ -25,8 +25,12 @@
                 <input type="text" name="companyCode" class="form-control" id="companyCode">
             </div>
         </div>
-        <div style="display: flex; justify-content: center;">
-            <button type="submit" id="searchBtn" class="btn btn-primary mb-3">Search</button>
+        <div class="mb-5" style="display: flex; justify-content: center;">
+            <button style="display: none; width: 130px;" id="loadBtn" class="btn btn-primary" type="button" disabled>
+                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                Searching...
+            </button>
+            <button style="width: 130px;" id="searchBtn" class="btn btn-primary" type="submit">Search</button>
         </div>
     </form>
     <div id="graph"></div>

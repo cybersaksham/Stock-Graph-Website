@@ -11,10 +11,22 @@ function giveOutput($error, $data){
     }
 }
 
+function loader($inp){
+    if($inp){
+        $('#searchBtn').hide();
+        $('#loadBtn').show();
+    }
+    else{
+        $('#loadBtn').hide();
+        $('#searchBtn').show();
+    }
+}
+
 $(document).ready(function(){
     $('#searchBtn').click(function(e){
         e.preventDefault();
         giveOutput("", "");
+        loader(true);
         $.ajax({
             url: "/getPlot",
             type: "POST",
@@ -26,7 +38,11 @@ $(document).ready(function(){
                 else{
                     giveOutput(null, response["data"]);
                 }
+                loader(false);
             },
+            error: function(){
+                loader(false);
+            }
         });
     })
 });
