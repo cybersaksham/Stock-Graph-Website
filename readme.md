@@ -18,4 +18,4 @@ pip install pandas_datareader
 ```
 
 # Status
-<p>Google Stock Plotted.</p>
+<p>User can enter code of stock.</p>
