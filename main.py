@@ -3,10 +3,10 @@ from plot import Plot
 import datetime
 
 
-def getData(code__):
+def getData(code__, start__, end__):
     plot = Plot(title=code__, code__=code__,
-                start=datetime.datetime(2021, 7, 1),
-                end=datetime.datetime.now())
+                start=datetime.datetime.strptime(start__, '%Y-%m-%d').date(),
+                end=datetime.datetime.strptime(end__, '%Y-%m-%d').date())
     plot.plotSegment()
     plot.plotRect()
     return plot.embed()
@@ -25,8 +25,10 @@ def getPlot():
     if request.method == "POST":
         # Getting data from form
         code__ = request.form["companyCode"]
+        start__ = request.form["startDate"]
+        end__ = request.form["endDate"]
         try:
-            return jsonify(error=None, data=getData(code__))
+            return jsonify(error=None, data=getData(code__, start__, end__))
         except:
             return jsonify(error="Data not found", data=None)
 
