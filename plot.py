@@ -7,8 +7,8 @@ from data import StockData
 
 
 class Plot:
-    def __init__(self, title, start, end):
-        self.data = StockData(start=start, end=end)
+    def __init__(self, title, code__, start, end):
+        self.data = StockData(code__=code__, start=start, end=end)
         self.plot = figure(x_axis_type='datetime', width=1000, height=300)
         self.plot.sizing_mode = "scale_width"
         self.plot.title = title
@@ -43,7 +43,7 @@ class Plot:
     def __plotRect_equal_days(self):
         list1 = self.data.equal_days()
         self.plot.rect("index", "x", "width", "height",
-                       line_color="black", source=self.__makeHoverData(list1), legend_label="Fall")
+                       line_color="black", source=self.__makeHoverData(list1))
 
     def plotRect(self, increase=True, decrease=True, equal=True):
         if increase:
