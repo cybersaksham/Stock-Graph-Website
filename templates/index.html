@@ -25,12 +25,37 @@
 <div class="container my-5">
     <!-- User Form -->
     <form class="row g-3" id="codeForm">
-        <!-- Company Code -->
         <div class="mb-3 row">
+            <div class="form-check">
+                <input class="form-check-input" type="radio" value="0" name="typeOfInput" id="inputCode">
+                <label class="form-check-label" for="inputCode">
+                    Enter code manually
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" value="1" name="typeOfInput" id="dropdownCode" checked>
+                <label class="form-check-label" for="dropdownCode">
+                    Select from dropdown
+                </label>
+            </div>
+        </div>
+        <!-- Company Code -->
+        <div style="display: none;" id="inputDiv" class="mb-3 row">
             <label for="companyCode" class="col-sm-2 col-form-label">Code</label>
             <div class="col-sm-10">
-                <input type="text" name="companyCode" class="form-control" id="companyCode">
+                <input type="text" placeholder="Enter company code" name="companyCode" class="form-control"
+                       id="companyCode">
             </div>
+        </div>
+        <!-- Select Company -->
+        <div id="selectDiv" class="input-group mb-3">
+            <label class="input-group-text" for="selectCompany">Company</label>
+            <select class="form-select" id="selectCompany">
+                <option selected>Choose...</option>
+                {% for name in names %}
+                <option value="{{ name | safe }}">{{ name | safe }}</option>
+                {% endfor %}
+            </select>
         </div>
         <!-- Starting date of data -->
         <div class="mb-3 row">
@@ -46,6 +71,8 @@
                 <input type="date" name="endDate" class="form-control" id="endDate">
             </div>
         </div>
+        <!-- Error Text -->
+        <div id="errorText" class="text-center text-danger"></div>
         <!-- Search button -->
         <div class="mb-5" style="display: flex; justify-content: center;">
             <button style="display: none; width: 130px;" id="loadBtn" class="btn btn-primary" type="button" disabled>

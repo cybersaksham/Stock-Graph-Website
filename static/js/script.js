@@ -86,8 +86,9 @@ function plotData($title, $increased, $decreased) {
 
 // Function to show error if any
 function giveError($error){
+    $('#errorText').empty();
     $('#chartContainer').empty();
-    $('#chartContainer').append($error);
+    $('#errorText').append($error);
 }
 
 // Function to show spinner until data is being fetched
@@ -108,48 +109,88 @@ $(document).ready(function(){
     $today = new Date();
     $('#endDate').val($today.toISOString().substr(0, 10));
 
+    // Selecting inputDiv
+    $('#codeForm').change(function(){
+        if($("[name='typeOfInput']:checked").val() == "0"){
+            $('#inputDiv').show();
+            $('#selectDiv').hide();
+        }
+        else{
+            $('#inputDiv').hide();
+            $('#selectDiv').show();
+        }
+    });
+
     // Clicking search button
     $('#searchBtn').click(function(e){
         // Initializations
         e.preventDefault();
         giveError("");
-        loader(true);
+
+        // Getting input type
+        $inputType = $("[name='typeOfInput']:checked").val();
+        $code = "";
+
+        // Getting company code according to input type
+        if($inputType == "0"){
+            // Checking for code input
+            if($('#companyCode').val() == ""){
+                giveError("Enter company code");
+            }
+            else{
+                $code = $('#companyCode').val();
+            }
+        }
+        else if($inputType == "1"){
+            // Checking for company selected
+            if($('#selectCompany').val() == "Choose..."){
+                giveError("Select a company");
+            }
+            else{
+                $code = $('#selectCompany').val().split(" / ")[1];
+            }
+        }
+        else{
+            giveError("Select an input option");
+        }
 
         // Sending request to fetch data
-        $.ajax({
-            url: "/getPlot",
-            type: "POST",
-            data: $('#codeForm').serialize(),
-            success: function(response){
-                if(response["error"] != null){
-                    // If data cannot be fetched
-                    giveError(response["error"]);
-                }
-                else{
-                    // Getting response data
-                    $inc__ = response["data"][0];
-                    $dec__ = response["data"][1];
-                    $incData__ = [];
-                    $decData__ = [];
+        if($code != ""){
+            loader(true);
+            $.ajax({
+                url: "/getPlot?code=" + $code + "&start=" + $('#startDate').val() + "&end=" + $('#endDate').val(),
+                type: "POST",
+                success: function(response){
+                    if(response["error"] != null){
+                        // If data cannot be fetched
+                        giveError(response["error"]);
+                    }
+                    else{
+                        // Getting response data
+                        $inc__ = response["data"][0];
+                        $dec__ = response["data"][1];
+                        $incData__ = [];
+                        $decData__ = [];
 
-                    // Formatting fetched data to be usable
-                    $.each($inc__ , function (index, value){
-                      $incData__[index] = {"x": new Date(value["x"][0], value["x"][1] - 1, value["x"][2]),
-                                        "y": value["y"]};
-                    });
-                    $.each($dec__ , function (index, value){
-                      $decData__[index] = {"x": new Date(value["x"][0], value["x"][1] - 1, value["x"][2]),
-                                        "y": value["y"]};
-                    });
+                        // Formatting fetched data to be usable
+                        $.each($inc__ , function (index, value){
+                          $incData__[index] = {"x": new Date(value["x"][0], value["x"][1] - 1, value["x"][2]),
+                                            "y": value["y"]};
+                        });
+                        $.each($dec__ , function (index, value){
+                          $decData__[index] = {"x": new Date(value["x"][0], value["x"][1] - 1, value["x"][2]),
+                                            "y": value["y"]};
+                        });
 
-                    // Plotting data
-                    plotData($('#companyCode').val(), $incData__, $decData__);
+                        // Plotting data
+                        plotData(response["title"], $incData__, $decData__);
+                    }
+                    loader(false);
+                },
+                error: function(){
+                    loader(false);
                 }
-                loader(false);
-            },
-            error: function(){
-                loader(false);
-            }
-        });
+            });
+        }
     })
 });

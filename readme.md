@@ -15,4 +15,4 @@ pip install pandas_datareader
 ```
 
 # Status
-<p>User can enter code of stock & also can choose start & end date for plot.</p>
+<p>User can enter code of stock or can select company name by dropdown.</p>
