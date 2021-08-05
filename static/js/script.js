@@ -31,17 +31,6 @@ function plotData($title, $increased, $decreased) {
         },
         // Data to plot
         data: [
-            // Rise days
-            {
-                type: "candlestick",
-                risingColor: "green",
-                legendMarkerColor: "green",
-                showInLegend: true,
-                name: "Rise",
-                yValueFormatString: "$###0.00",
-                xValueFormatString: "DD MMM YYYY",
-                dataPoints: $increased
-            },
             // Fall days
             {
                 type: "candlestick",
@@ -52,6 +41,17 @@ function plotData($title, $increased, $decreased) {
                 yValueFormatString: "$###0.00",
                 xValueFormatString: "DD MMM YYYY",
                 dataPoints: $decreased
+            },
+            // Rise days
+            {
+                type: "candlestick",
+                risingColor: "green",
+                legendMarkerColor: "green",
+                showInLegend: true,
+                name: "Rise",
+                yValueFormatString: "$###0.00",
+                xValueFormatString: "DD MMM YYYY",
+                dataPoints: $increased
             }
         ]
     });
