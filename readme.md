@@ -11,9 +11,6 @@ pip install flask
 pip install gunicorn
 ```
 ```cmd
-pip install bokeh
-```
-```cmd
 pip install pandas_datareader
 ```
 
