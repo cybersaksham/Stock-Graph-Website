@@ -30,7 +30,7 @@ def getData(code__, start__, end__):
 
 # Collecting company names
 with open("data.json") as f:
-    company_name = json.load(f)
+    company_name = sorted(json.load(f), key=lambda i: i['name'])
 
 # Creating app
 app = Flask(__name__)
