@@ -1,15 +1,27 @@
 from flask import Flask, render_template, request, jsonify
-from plot import Plot
+from data import StockData
 import datetime
 
 
+def formatData(data__):
+    list__ = []
+    for item in data__:
+        date__ = [int(item) for item in str(item).split(" ")[0].split("-")]
+        list__.append({"x": [date__[0], date__[1], date__[2]],
+                       "y": [
+                           data__[item]["Open"],
+                           data__[item]["High"],
+                           data__[item]["Low"],
+                           data__[item]["Close"]
+                       ]})
+    return list__
+
+
 def getData(code__, start__, end__):
-    plot = Plot(title=code__, code__=code__,
-                start=datetime.datetime.strptime(start__, '%Y-%m-%d').date(),
-                end=datetime.datetime.strptime(end__, '%Y-%m-%d').date())
-    plot.plotSegment()
-    plot.plotRect()
-    return plot.embed()
+    data__ = StockData(code__,
+                       datetime.datetime.strptime(start__, '%Y-%m-%d').date(),
+                       datetime.datetime.strptime(end__, '%Y-%m-%d').date())
+    return [formatData(data__.increase_days()), formatData(data__.decrease_days())]
 
 
 app = Flask(__name__)
