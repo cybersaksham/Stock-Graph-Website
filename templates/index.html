@@ -4,6 +4,8 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Title -->
     <title>Stock Plot</title>
 
     <!-- Bootstrap CSS -->
@@ -11,31 +13,40 @@
           integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Anton&family=Bree+Serif&display=swap" rel="stylesheet">
+
+    <!-- For using jquery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
+    <!-- For using canvas js -->
     <script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 </head>
 <body>
+<!-- Main Container -->
 <div class="container my-5">
+    <!-- User Form -->
     <form class="row g-3" id="codeForm">
+        <!-- Company Code -->
         <div class="mb-3 row">
             <label for="companyCode" class="col-sm-2 col-form-label">Code</label>
             <div class="col-sm-10">
                 <input type="text" name="companyCode" class="form-control" id="companyCode">
             </div>
         </div>
+        <!-- Starting date of data -->
         <div class="mb-3 row">
             <label for="startDate" class="col-sm-2 col-form-label">Start Date</label>
             <div class="col-sm-10">
                 <input type="date" value="2004-01-01" name="startDate" class="form-control" id="startDate">
             </div>
         </div>
+        <!-- Ending date of data -->
         <div class="mb-3 row">
             <label for="endDate" class="col-sm-2 col-form-label">End Date</label>
             <div class="col-sm-10">
                 <input type="date" name="endDate" class="form-control" id="endDate">
             </div>
         </div>
+        <!-- Search button -->
         <div class="mb-5" style="display: flex; justify-content: center;">
             <button style="display: none; width: 130px;" id="loadBtn" class="btn btn-primary" type="button" disabled>
                 <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
@@ -44,20 +55,15 @@
             <button style="width: 130px;" id="searchBtn" class="btn btn-primary" type="submit">Search</button>
         </div>
     </form>
+    <!-- Where we will plot or show error -->
     <div id="chartContainer" class="my-5" style="height: 370px; width: 100%;"></div>
 </div>
-<!-- Optional JavaScript; choose one of the two! -->
-
-<!-- Option 1: Bootstrap Bundle with Popper -->
+<!-- Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
-        crossorigin="anonymous"></script>
-
-<!-- Option 2: Separate Popper and Bootstrap JS -->
-<!--
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js" integrity="sha384-SR1sx49pcuLnqZUnnPwx6FCym0wLsk5JZuNx2bPPENzswTNFaQU1RDvt3wT4gWFG" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.min.js" integrity="sha384-j0CNLUeiqtyaRmlzUHCPZ+Gy5fQu0dQ6eZ/xAww941Ai1SxSY+0EQqNXNE6DZiVc" crossorigin="anonymous"></script>
--->
+        crossorigin="anonymous">
+</script>
 </body>
+<!-- User JS -->
 <script src="/static/js/script.js"></script>
 </html>

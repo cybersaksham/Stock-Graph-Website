@@ -1,3 +1,4 @@
+# Importing Modules
 from pandas_datareader import data
 
 
@@ -12,15 +13,18 @@ class StockData:
 
     @staticmethod
     def getStatus(c, o):
+        # Setting status to show different colors on increased & decreased data
         if c <= o:
             return "Decrease"
         elif c > o:
             return "Increase"
 
     def increase_days(self):
+        # Getting days for stock rise
         data__ = self.df[self.df["Status"] == "Increase"]
         return data__.T.to_dict()
 
     def decrease_days(self):
+        # Getting days for stock fall
         data__ = self.df[self.df["Status"] == "Decrease"]
         return data__.T.to_dict()
