@@ -48,14 +48,16 @@
             </div>
         </div>
         <!-- Select Company -->
-        <div id="selectDiv" class="input-group mb-3">
-            <label class="input-group-text" for="selectCompany">Company</label>
-            <select class="form-select" id="selectCompany">
-                <option selected>Choose...</option>
-                {% for name in names %}
-                <option value="{{ name | safe }}">{{ name | safe }}</option>
-                {% endfor %}
-            </select>
+        <div id="selectDiv" class="mb-3 row">
+            <label class="col-sm-2 col-form-label" for="selectCompany">Company</label>
+            <div class="col-sm-10">
+                <select class="form-select" id="selectCompany">
+                    <option selected>Choose...</option>
+                    {% for name in names %}
+                    <option value="{{ name | safe }}">{{ name | safe }}</option>
+                    {% endfor %}
+                </select>
+            </div>
         </div>
         <!-- Starting date of data -->
         <div class="mb-3 row">
