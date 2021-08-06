@@ -225,7 +225,7 @@ $(document).ready(function(){
                         });
 
                         // Plotting data
-                        plotData($('#selectStock').val().split(" / ")[0], $incData__, $decData__);
+                        plotData(response["title"], $incData__, $decData__);
                     }
                     loader(false);
                 },

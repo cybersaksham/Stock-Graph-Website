@@ -45,6 +45,16 @@ if __name__ == '__main__':
         if len(fin_data[country]["exchanges"]) == 0:
             fin_data.pop(country)
 
+    # Getting company names to show on plot
+    company_names = {}
+    for country in fin_data:
+        for exchange in fin_data[country]["exchanges"]:
+            for stock in fin_data[country][exchange]:
+                value, key = str(stock).split(" / ")
+                company_names[key] = value
+    with open("company.json", "w") as f:
+        json.dump(company_names, f)
+
     # Getting final json file
     with open("data.json", "w") as f:
         json.dump(fin_data, f)
