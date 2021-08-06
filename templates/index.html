@@ -51,15 +51,33 @@
             </div>
         </div>
         <!-- Select Company -->
-        <div id="selectDiv" class="mb-3 row">
-            <label class="col-sm-2 col-form-label" for="selectCompany">Company</label>
-            <div class="col-sm-10">
-                <select class="form-select" id="selectCompany">
-                    <option selected>Choose...</option>
-                    {% for name in names %}
-                    <option value="{{ name | safe }}">{{ name | safe }}</option>
-                    {% endfor %}
-                </select>
+        <div id="selectDiv">
+            <div class="mb-3 row">
+                <label class="col-sm-2 col-form-label" for="selectCountry">Country</label>
+                <div class="col-sm-10">
+                    <select class="form-select" id="selectCountry">
+                        <option selected>Choose...</option>
+                        {% for name in names %}
+                        <option value="{{ name | safe }}">{{ name | safe }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <label class="col-sm-2 col-form-label" for="selectExchange">Exchange</label>
+                <div class="col-sm-10">
+                    <select class="form-select" id="selectExchange">
+                        <option selected>Choose...</option>
+                    </select>
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <label class="col-sm-2 col-form-label" for="selectStock">Stock</label>
+                <div class="col-sm-10">
+                    <select class="form-select" id="selectStock">
+                        <option selected>Choose...</option>
+                    </select>
+                </div>
             </div>
         </div>
         <!-- Starting date of data -->

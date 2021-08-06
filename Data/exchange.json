@@ -1,0 +1,61 @@
+{
+  "United States of America": [
+    "Chicago Board of Trade",
+    "Chicago Mercantile Exchange",
+    "New York Board of Trade",
+    "New York Commodities Exchange",
+    "New York Mercantile Exchange",
+    "OTC Bulletin Board Market",
+    "Pink Sheets"
+  ],
+  "Argentina": [
+    "Buenos Aires Stock Exchange"
+  ],
+  "Australia": [
+    "Australian Stock Exchange"
+  ],
+  "Brazil": [
+    "BOVESPA - Sao Paolo Stock Exchange"
+  ],
+  "Canada": [
+    "Toronto Stock Exchange",
+    "TSX Venture Exchange"
+  ],
+  "France": [
+    "Euronext",
+    "Paris Stock Exchange"
+  ],
+  "Germany": [
+    "Berlin Stock Exchange",
+    "Bremen Stock Exchange",
+    "Dusseldorf Stock Exchange",
+    "Frankfurt Stock Exchange",
+    "Hamburg Stock Exchange",
+    "Hanover Stock Exchange",
+    "Munich Stock Exchange",
+    "Stuttgart Stock Exchange",
+    "XETRA Stock Exchange"
+  ],
+  "Hong Kong": [
+    "Hong Kong Stock Exchange"
+  ],
+  "India": [
+    "Bombay Stock Exchange",
+    "National Stock Exchange of India"
+  ],
+  "Italy": [
+    "Milan Stock Exchange"
+  ],
+  "Mexico": [
+    "Mexico Stock Exchange"
+  ],
+  "New Zealand": [
+    "New Zealand Stock Exchange"
+  ],
+  "Singapore": [
+    "Singapore Stock Exchange"
+  ],
+  "United Kingdom": [
+    "London Stock Exchange"
+  ]
+}

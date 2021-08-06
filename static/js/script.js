@@ -103,6 +103,15 @@ function loader($inp){
     }
 }
 
+// Function to show dropdowns
+function showDropDown($id, $data){
+    $($id).empty();
+    $($id).append("<option selected>Choose...</option>");
+    $.each($data, function(index, value){
+        $($id).append("<option>" + value + "</option>");
+    });
+}
+
 // Starting Point
 $(document).ready(function(){
     // Setting end date input to today
@@ -118,6 +127,33 @@ $(document).ready(function(){
         else{
             $('#inputDiv').hide();
             $('#selectDiv').show();
+        }
+    });
+
+    // Getting json files
+    $.getJSON('/static/Data/data.json', function(data) {
+        $stockData = data;
+    });
+
+    // Changing country
+    $('#selectCountry').change(function(){
+        if($('#selectCountry').val() != "Choose..."){
+            showDropDown('#selectExchange', $stockData[$(this).val()]["exchanges"]);
+            showDropDown('#selectStock', []);
+        }
+        else{
+            showDropDown('#selectExchange', []);
+            showDropDown('#selectStock', []);
+        }
+    });
+
+    // Changing exchange
+    $('#selectExchange').change(function(){
+        if($('#selectExchange').val() != "Choose..."){
+            showDropDown('#selectStock', $stockData[$('#selectCountry').val()][$('#selectExchange').val()]);
+        }
+        else{
+            showDropDown('#selectStock', []);
         }
     });
 
@@ -143,11 +179,17 @@ $(document).ready(function(){
         }
         else if($inputType == "1"){
             // Checking for company selected
-            if($('#selectCompany').val() == "Choose..."){
-                giveError("Select a company");
+            if($('#selectCountry').val() == "Choose..."){
+                giveError("Select a country");
+            }
+            else if($('#selectExchange').val() == "Choose..."){
+                giveError("Select an exchange");
+            }
+            else if($('#selectStock').val() == "Choose..."){
+                giveError("Select a stock");
             }
             else{
-                $code = $('#selectCompany').val().split(" / ")[1];
+                $code = $('#selectStock').val().split(" / ")[1];
             }
         }
         else{
@@ -183,7 +225,7 @@ $(document).ready(function(){
                         });
 
                         // Plotting data
-                        plotData(response["title"], $incData__, $decData__);
+                        plotData($('#selectStock').val().split(" / ")[0], $incData__, $decData__);
                     }
                     loader(false);
                 },

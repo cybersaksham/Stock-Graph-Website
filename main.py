@@ -29,8 +29,8 @@ def getData(code__, start__, end__):
 
 
 # Collecting company names
-with open("data.json") as f:
-    company_name = sorted(json.load(f), key=lambda i: i['name'])
+with open("Data/exchange.json") as f:
+    country_name = sorted(json.load(f), key=lambda i: str(i))
 
 # Creating app
 app = Flask(__name__)
@@ -39,10 +39,7 @@ app = Flask(__name__)
 @app.route('/')
 def home():
     # Main route
-    name_list__ = []
-    for item in company_name:
-        name_list__.append(item["name"] + " / " + item["symbol"])
-    return render_template("index.html", names=name_list__)
+    return render_template("index.html", names=country_name)
 
 
 @app.route('/getPlot', methods=["POST"])
@@ -54,17 +51,9 @@ def getPlot():
         start__ = request.args.get("start")
         end__ = request.args.get("end")
 
-        title__ = ""
-
-        # Getting company name by code
-        for item in company_name:
-            if item["symbol"] == code__:
-                title__ = item["name"]
-                break
-
         try:
             # If data is found with no error
-            return jsonify(error=None, data=getData(code__, start__, end__), title=title__)
+            return jsonify(error=None, data=getData(code__, start__, end__))
         except:
             # If some error occurred due to user inputs
             return jsonify(error="Data not found", data=None)
