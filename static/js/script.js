@@ -37,7 +37,7 @@ function plotData($title, $increased, $decreased) {
                 legendMarkerColor: "red",
                 showInLegend: true,
                 name: "Fall",
-                yValueFormatString: "$###0.00",
+                yValueFormatString: "###0.00",
                 xValueFormatString: "DD MMM YYYY",
                 dataPoints: $decreased
             },
@@ -48,7 +48,7 @@ function plotData($title, $increased, $decreased) {
                 legendMarkerColor: "green",
                 showInLegend: true,
                 name: "Rise",
-                yValueFormatString: "$###0.00",
+                yValueFormatString: "###0.00",
                 xValueFormatString: "DD MMM YYYY",
                 dataPoints: $increased
             }
