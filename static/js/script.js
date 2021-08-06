@@ -17,8 +17,7 @@ function plotData($title, $increased, $decreased) {
         },
         // Y-axis
         axisY: {
-            prefix: "$",
-            title: "Price (in USD)"
+            title: "Price (in local currency)"
         },
         // Hover tooltips
         toolTip: {
