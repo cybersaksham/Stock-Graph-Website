@@ -28,7 +28,7 @@ def getData(code__, start__, end__):
     return [formatData(data__.increase_days()), formatData(data__.decrease_days())]
 
 
-# Collecting company names
+# Collecting country names
 with open("Data/exchange.json") as f:
     country_name = sorted(json.load(f), key=lambda i: str(i))
 

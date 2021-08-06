@@ -2,6 +2,7 @@ import json
 import pandas as pd
 
 if __name__ == '__main__':
+    # Getting data from csv file
     csv_file = pd.read_csv("data.csv")
     csv_file.fillna("", inplace=True)
     dict__ = csv_file.T.to_dict()
@@ -12,6 +13,7 @@ if __name__ == '__main__':
 
     list__ = sorted(list__, key=lambda i: str(i['COMPANY']))
 
+    # Storing complete type of data in one file
     data = {}
     with open("exchange.json") as f:
         temp__ = json.load(f)
@@ -32,6 +34,7 @@ if __name__ == '__main__':
             exc = "Other"
         data[cont][exc].append(stockData["COMPANY"] + " / " + stockData["SYMBOL"])
 
+    # Removing those countries or exchanges which does not have a single stock
     fin_data = {}
     for country in data:
         fin_data[country] = {"exchanges": []}
@@ -42,5 +45,6 @@ if __name__ == '__main__':
         if len(fin_data[country]["exchanges"]) == 0:
             fin_data.pop(country)
 
+    # Getting final json file
     with open("data.json", "w") as f:
         json.dump(fin_data, f)
